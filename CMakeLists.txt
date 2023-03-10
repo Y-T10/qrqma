@@ -5,8 +5,32 @@ include(GNUInstallDirs)
 add_library(qrqma)
 add_library(qrqma::qrqma ALIAS qrqma)
 target_compile_features(qrqma PUBLIC cxx_std_17)
-target_sources(qrqma PRIVATE demangle.cpp loader.cpp template.cpp)
-target_include_directories(qrqma PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_sources(qrqma PRIVATE
+    demangle.cpp
+    loader.cpp
+    template.cpp
+    actions/atom.cpp
+    actions/block_statement.cpp
+    actions/context.cpp
+    actions/convert.cpp
+    actions/expression.cpp
+    actions/extends_statement.cpp
+    actions/for_statement.cpp
+    actions/function_call.cpp
+    actions/grammar.cpp
+    actions/if_statement.cpp
+    actions/include_statement.cpp
+    actions/index_operator.cpp
+    actions/print_statement.cpp
+    actions/set_statement.cpp
+    actions/types.cpp
+)
+target_include_directories(qrqma PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/actions
+    ${CMAKE_CURRENT_SOURCE_DIR}/grammar
+    ${CMAKE_CURRENT_SOURCE_DIR}/tao
+)
 
 set(DEST_DIR "${CMAKE_INSTALL_PREFIX}")
 set(VERSION "${PROJECT_VERSION}")

@@ -41,7 +41,7 @@ void action<grammar::include_control_statement>::apply(ContextP& context, bool i
 			}
         },
         [&] (types::NonconstantExpression& nce) {
-			context->addRenderToken([c=context.get(), nce=std::move(nce), loader, ignore_source_not_found] -> Context::RenderOutput {
+			context->addRenderToken([c=context.get(), nce=std::move(nce), loader, ignore_source_not_found]() -> Context::RenderOutput {
 				auto sub_c = std::make_unique<Context>(c);
 				auto name = std::any_cast<std::string>(nce.eval());
 				try {
